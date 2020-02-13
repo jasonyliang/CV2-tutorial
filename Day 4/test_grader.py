@@ -100,18 +100,17 @@ for (q, i) in enumerate(np.arange(0, len(questionCnts), 5)):
         # bubbled-in answer
         if bubbled is None or total > bubbled[0]:
             bubbled = (total, j)
-        # initialize the contour color and the index of the
-        # *correct* answer
-        color = (0, 0, 255)
-        k = ANSWER_KEY[q]
-        # check to see if the bubbled answer is correct
-        if k == bubbled[1]:
-            color = (0, 255, 0)
-            correct += 1
-        # draw the outline of the correct answer on the test
-        cv2.drawContours(paper, [cnts[k]], -1, color, 3)
+    # initialize the contour color and the index of the
+    # *correct* answer
+    color = (0, 0, 255)
+    k = ANSWER_KEY[q]
+    # check to see if the bubbled answer is correct
+    if k == bubbled[1]:
+        color = (0, 255, 0)
+        correct += 1
+    # draw the outline of the correct answer on the test
+    cv2.drawContours(paper, [cnts[k]], -1, color, 3)
 
-print(correct)
 # grab the test taker
 score = (correct / 5.0) * 100
 print("[INFO] score: {:.2f}%".format(score))
